@@ -10,8 +10,6 @@ datagroup: sandbox_default_datagroup {
 
 persist_with: sandbox_default_datagroup
 
-# - explore: date_dimension
-
-# - explore: order_info
-
-# - explore: regional_managers
+explore: orders {
+  from: order_info
+}

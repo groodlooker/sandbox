@@ -12,4 +12,9 @@ persist_with: sandbox_default_datagroup
 
 explore: orders {
   from: order_info
+  join: sales_per_order {
+    sql_on: ${orders.order_id} = ${sales_per_order.order_id} ;;
+    type: inner
+    relationship: many_to_one
+  }
 }

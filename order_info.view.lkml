@@ -158,11 +158,18 @@ view: order_info {
     sql: ${discount} ;;
   }
 
-  ## Multi-level Aggregates ##
+  ## Customer Info ##
 
-  measure: average_order_size {
-    type: number
-    value_format_name: usd
-    sql: select sum ;;
+  dimension_group: first_purchase {
+    type: time
+    timeframes: [year, month, month_name, week_of_year]
+    sql: select min(${order_date})
+    from public.order_info o
+    where ${TABLE}.customer_name = o.customer_name;;
   }
+
+
+
+
+
 }

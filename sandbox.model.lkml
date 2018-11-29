@@ -17,4 +17,9 @@ explore: orders {
     type: inner
     relationship: many_to_one
   }
+  join: customer_details {
+    sql_on: ${customer_details.customer_name} = ${orders.customer_name} ;;
+    type: inner
+    relationship: many_to_one
+  }
 }

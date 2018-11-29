@@ -47,6 +47,12 @@ view: order_info {
     sql: ${TABLE}.order_date ;;
   }
 
+  measure: min_order {
+    type: date
+    hidden: yes
+    sql: min(${order_date}) ;;
+  }
+
   dimension: order_id {
     type: string
     sql: ${TABLE}.order_id ;;
@@ -163,9 +169,9 @@ view: order_info {
   dimension_group: first_purchase {
     type: time
     timeframes: [year, month, month_name, week_of_year]
-    sql: select min(${order_date})
+    sql: (select min(o.order_date)
     from public.order_info o
-    where ${TABLE}.customer_name = o.customer_name;;
+    where ${TABLE}.customer_name = o.customer_name);;
   }
 
 
